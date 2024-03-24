@@ -68,8 +68,8 @@ function App() {
         </div>
       </div>
       <footer className="text-center">
-        Written and coded by:
-        <a href={"https://codepen.io/cyberrain94"} target="_blank">
+          coded by:
+        <a href={"https://github.com/CyberRain94"} target="_blank">
           CyberRain94
         </a>
       </footer>
