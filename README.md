@@ -5,7 +5,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/CyberRain94/Quote-Generator?style=social)](https://github.com/CyberRain94/Quote-Generator/stargazers)
 [![Docker Pulls](https://img.shields.io/badge/docker-pulls-green)](https://github.com/CyberRain94/Quote-Generator/pkgs/container/quote-generator)
 
-**Live Demo**: [https://quote-generator.cyberrain94.com](https://quote-generator.cyberrain94.com)
+**[Live Demo](https://CyberRain94.github.io/Quote-Generator/)**
 **🚀 Deployed as**: [GitHub Packages Docker Container](https://github.com/CyberRain94/Quote-Generator/pkgs/container/quote-generator)
 
 ---
