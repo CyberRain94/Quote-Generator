@@ -4,14 +4,38 @@ function App() {
   const [quotes, setQuotes] = useState([]);
   const [randomQuote, setRandomQuote] = useState("");
   const [colors, setColor] = useState(" #5dade2 ");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
-    async function getQuotes() {
-      const response = await fetch(`https://type.fit/api/quotes`);
-      let arrData = await response.json();
-      setQuotes(arrData);
-      let randIndex = Math.floor(Math.random() * arrData.length);
-      setRandomQuote(arrData[randIndex]);
-    }
+    const getQuotes = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await fetch("/api/quotes");
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data) || data.length === 0) {
+          throw new Error("No quotes were returned.");
+        }
+
+        setQuotes(data);
+
+        const randomIndex = Math.floor(Math.random() * data.length);
+        setRandomQuote(data[randomIndex]);
+      } catch (err) {
+        console.error("Failed to fetch quotes:", err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     getQuotes();
   }, []);
   const getNewQuote = () => {
@@ -55,7 +79,7 @@ function App() {
               href={
                 "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=" +
                 encodeURIComponent(
-                  '"' + randomQuote.text + '"' + randomQuote.author
+                  '"' + randomQuote.text + '"' + randomQuote.author,
                 )
               }
               target="_blank"
@@ -68,7 +92,7 @@ function App() {
         </div>
       </div>
       <footer className="text-center">
-          coded by:
+        coded by:
         <a href={"https://github.com/CyberRain94"} target="_blank">
           CyberRain94
         </a>
